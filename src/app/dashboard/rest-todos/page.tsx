@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { GridTodos } from "@/todos";
+import { GridTodos, NewTodo } from "@/todos";
 
 export const metadata = {
   title: "Listado de Todos",
@@ -11,6 +11,9 @@ export default async function RestTodosPage() {
 
   return (
     <div>
+      <div className="w-full px-5 mx-5 mb-5">
+        <NewTodo />
+      </div>
       <GridTodos todos={todos} />
     </div>
   );

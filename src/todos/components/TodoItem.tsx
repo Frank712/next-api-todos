@@ -17,7 +17,7 @@ export const TodoItem = ({ todo, toggleTodo }: Props) => {
           className={`
           flex p-2 rounded-md cursor-pointer
           hover:bg-opacity-60
-          ${todo.complete ? "bg-blue-100" : "bg-red-100"}
+          ${todo.complete ? "bg-green-100" : "bg-red-100"}
         `}
         >
           {todo.complete ? (
