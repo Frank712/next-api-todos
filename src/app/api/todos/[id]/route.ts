@@ -30,7 +30,10 @@ export async function PUT(request: Request, { params }: Segments) {
   const { id } = params;
   const todo = getTodo(id);
   if (!todo)
-    return NextResponse.json({ message: "Todo not found" }, { status: 404 });
+    return NextResponse.json(
+      { message: `Todo with id ${id} NOT FOUND` },
+      { status: 404 }
+    );
   try {
     const { complete, description } = await putSchema.validate(
       await request.json()
@@ -41,6 +44,24 @@ export async function PUT(request: Request, { params }: Segments) {
     });
     return NextResponse.json(updatedTodo);
   } catch (error) {
-    return NextResponse.json(error, { status: 404 });
+    return NextResponse.json(error, { status: 400 });
+  }
+}
+
+export async function DELETE(request: Request, { params }: Segments) {
+  const { id } = params;
+  const todo = getTodo(id);
+  if (!todo)
+    return NextResponse.json(
+      { message: `Todo with id ${id} NOT FOUND` },
+      { status: 404 }
+    );
+  try {
+    const deletedTodo = await prisma.todo.delete({
+      where: { id },
+    });
+    return NextResponse.json(deletedTodo);
+  } catch (error) {
+    return NextResponse.json(error, { status: 400 });
   }
 }

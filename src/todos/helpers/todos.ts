@@ -22,3 +22,17 @@ export const createTodo = async (description: string): Promise<Todo> => {
   }).then((res) => res.json());
   return todo;
 };
+
+export const deleteTodo = async (id: string): Promise<Todo> => {
+  const todo = fetch(`/api/todos/${id}`, {
+    method: "DELETE",
+  }).then((res) => res.json());
+  return todo;
+};
+
+export const deleteCompletedTodos = async (): Promise<boolean> => {
+  await fetch(`/api/todos`, {
+    method: "DELETE",
+  }).then((res) => res.json());
+  return true;
+};
