@@ -56,7 +56,7 @@ export const Sidebar = () => {
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
             frhack 7
           </h5>
-          <span className="hidden text-gray-400 lg:block">Admin</span>
+          <span className="hidden text-gray-400 lg:block">Hacker</span>
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
