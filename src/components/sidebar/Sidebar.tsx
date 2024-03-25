@@ -3,8 +3,11 @@ import { SidebarItem } from "./SidebarItem";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  IoBrowsersSharp,
   IoCalendarOutline,
   IoCheckboxOutline,
+  IoCodeWorking,
+  IoDocumentLockOutline,
   IoListOutline,
 } from "react-icons/io5";
 
@@ -23,6 +26,11 @@ const menuItems = [
     icon: <IoListOutline />,
     title: "Server Actions",
     path: "/dashboard/server-todos",
+  },
+  {
+    icon: <IoCodeWorking />,
+    title: "Cookies",
+    path: "/dashboard/cookies",
   },
 ];
 
@@ -52,6 +60,7 @@ export const Sidebar = () => {
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
             height={50}
             width={50}
+            priority
           />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
             frhack 7
