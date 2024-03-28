@@ -3,6 +3,7 @@ import { SidebarItem } from "./SidebarItem";
 import Link from "next/link";
 import Image from "next/image";
 import {
+  IoBasketOutline,
   IoBrowsersSharp,
   IoCalendarOutline,
   IoCheckboxOutline,
@@ -31,6 +32,11 @@ const menuItems = [
     icon: <IoCodeWorking />,
     title: "Cookies",
     path: "/dashboard/cookies",
+  },
+  {
+    icon: <IoBasketOutline />,
+    title: "Productos",
+    path: "/dashboard/products",
   },
 ];
 
