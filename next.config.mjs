@@ -8,7 +8,7 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "media.licdn.com",
+        hostname: "cdn-icons-png.flaticon.com",
       },
       {
         protocol: "https",

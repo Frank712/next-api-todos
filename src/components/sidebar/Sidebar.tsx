@@ -53,8 +53,9 @@ export const Sidebar = async () => {
   const session = await getServerSession(authOptions);
   const imageUrl =
     session?.user?.image ||
-    "https://media.licdn.com/dms/image/D4E03AQFSdQNBsyyTJQ/profile-displayphoto-shrink_800_800/0/1711305881719?e=1717027200&v=beta&t=aDlsyKhg4Vv7gs1zl2YisEgVeiRr_pEm1AAxyMgzFvM";
-  const userName = session?.user?.name || "frhack 7";
+    "https://cdn-icons-png.flaticon.com/512/3607/3607444.png";
+  const userName = session?.user?.name || "Inicie sesión";
+  const roles = session?.user?.roles || ["user"];
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
       <div>
@@ -85,7 +86,9 @@ export const Sidebar = async () => {
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
             {userName}
           </h5>
-          <span className="hidden text-gray-400 lg:block">Hacker</span>
+          <span className="hidden text-gray-400 lg:block capitalize">
+            {roles.join(" - ")}
+          </span>
         </div>
 
         <ul className="space-y-2 tracking-wide mt-8">
