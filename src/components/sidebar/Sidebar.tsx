@@ -10,6 +10,7 @@ import {
   IoCodeWorking,
   IoDocumentLockOutline,
   IoListOutline,
+  IoPersonOutline,
 } from "react-icons/io5";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { getServerSession } from "next-auth";
@@ -39,6 +40,11 @@ const menuItems = [
     icon: <IoBasketOutline />,
     title: "Productos",
     path: "/dashboard/products",
+  },
+  {
+    icon: <IoPersonOutline />,
+    title: "Perfil",
+    path: "/dashboard/profile",
   },
 ];
 
