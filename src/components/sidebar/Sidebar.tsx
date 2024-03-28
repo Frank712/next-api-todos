@@ -11,6 +11,8 @@ import {
   IoDocumentLockOutline,
   IoListOutline,
 } from "react-icons/io5";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 
 const menuItems = [
   {
@@ -40,7 +42,12 @@ const menuItems = [
   },
 ];
 
-export const Sidebar = () => {
+export const Sidebar = async () => {
+  const session = await getServerSession(authOptions);
+  const imageUrl =
+    session?.user?.image ||
+    "https://media.licdn.com/dms/image/D4E03AQFSdQNBsyyTJQ/profile-displayphoto-shrink_800_800/0/1711305881719?e=1717027200&v=beta&t=aDlsyKhg4Vv7gs1zl2YisEgVeiRr_pEm1AAxyMgzFvM";
+  const userName = session?.user?.name || "frhack 7";
   return (
     <aside className="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
       <div>
@@ -61,7 +68,7 @@ export const Sidebar = () => {
         <div className="mt-8 text-center">
           {/* Next/Image */}
           <Image
-            src="https://media.licdn.com/dms/image/D4E03AQFSdQNBsyyTJQ/profile-displayphoto-shrink_800_800/0/1711305881719?e=1717027200&v=beta&t=aDlsyKhg4Vv7gs1zl2YisEgVeiRr_pEm1AAxyMgzFvM"
+            src={imageUrl}
             alt="avatar user"
             className="w-10 h-10 m-auto rounded-full object-cover lg:w-28 lg:h-28"
             height={50}
@@ -69,7 +76,7 @@ export const Sidebar = () => {
             priority
           />
           <h5 className="hidden mt-4 text-xl font-semibold text-gray-600 lg:block">
-            frhack 7
+            {userName}
           </h5>
           <span className="hidden text-gray-400 lg:block">Hacker</span>
         </div>
