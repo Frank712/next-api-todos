@@ -4,6 +4,8 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import { Adapter } from "next-auth/adapters";
 import GithubProvider from "next-auth/providers/github";
 import GoggleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { signInEmailPassword } from "@/auth/actions/auth-actions";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
@@ -15,6 +17,32 @@ export const authOptions: NextAuthOptions = {
     GithubProvider({
       clientId: process.env.GITHUB_ID ?? "",
       clientSecret: process.env.GITHUB_SECRET ?? "",
+    }),
+    CredentialsProvider({
+      name: "Credentials",
+      credentials: {
+        email: {
+          label: "Correo",
+          type: "email",
+          placeholder: "user@gmail.com",
+        },
+        password: {
+          label: "Contraseña",
+          type: "password",
+          placeholder: "*******",
+        },
+      },
+      async authorize(credentials, req) {
+        const user = await signInEmailPassword(
+          credentials!.email,
+          credentials!.password
+        );
+
+        if (user) {
+          return user;
+        }
+        return null;
+      },
     }),
   ],
   session: {
@@ -30,7 +58,6 @@ export const authOptions: NextAuthOptions = {
       });
       token.roles = dbUser?.roles ?? ["no-roles"];
       token.id = dbUser?.id ?? "no-uuid";
-      console.log(token);
       return token;
     },
     async session({ session, token, user }) {
